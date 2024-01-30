@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "918319200610",
+    "project_id": "amitfinal-6e7b8",
+    "storage_bucket": "amitfinal-6e7b8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:918319200610:android:aa2360dac2fa6881f6943b",
+        "android_client_info": {
+          "package_name": "com.example.amitfinal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUNloIGbM1AiOypzHc7JkUjvuk8YIizGI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
