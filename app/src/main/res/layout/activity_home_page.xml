@@ -1,12 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomePage">
+    android:orientation="vertical"
+    android:background="@drawable/backround_image"
+    tools:context=".UI.HomePage.HomePage">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:textStyle="bold"
+        android:text="שלום "
+        android:textSize="25dp"
+        android:id="@+id/tvname"
+        android:layout_alignParentEnd="true"
+
+        />
+
+<ImageView
+    android:layout_width="30dp"
+    android:layout_height="30dp"
+    android:background="@drawable/moneyimage"
+
+    />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+         android:layout_marginRight="40dp"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:id="@+id/tvmoney"
+        android:text="שקל"
+
+        />
 
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btncamera"
+        android:background="@drawable/roundbackround"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:textSize="25dp"
+        android:layout_marginTop="150dp"
+        android:text="have you recycle today?"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="215dp"
+        android:id="@+id/tvdes"
+        android:textStyle="bold"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="240dp"
+        android:visibility="invisible"
+        android:textStyle="bold"
+        android:id="@+id/etdes"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300dp"
+        android:visibility="invisible"
+        android:textStyle="bold"
+        android:background="@drawable/roundbackround"
+        android:id="@+id/btndes"
+        android:text="press here to earn money"
 
+        />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:layout_width="270dp"
+        android:layout_height="270dp"
+        android:id="@+id/image1"
+        android:layout_marginVertical="370dp"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        />
+
+    <Button
+        android:id="@+id/btnlogout"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/roundbackround"
+        android:text="התנתק"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

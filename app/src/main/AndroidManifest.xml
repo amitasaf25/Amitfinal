@@ -13,10 +13,13 @@
         android:theme="@style/Theme.AmitFinal"
         tools:targetApi="31">
         <activity
-            android:name=".LogIn1"
+            android:name=".UI.LogIn1.LogIn1"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".UI.HomePage.HomePage"
+            android:exported="false" />
+        <activity
+            android:name=".UI.MainActivity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

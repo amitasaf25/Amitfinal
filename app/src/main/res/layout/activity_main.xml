@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/backround_image"
-    tools:context=".MainActivity">
+    tools:context=".UI.MainActivity.MainActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -14,13 +14,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="16dp"
+            >
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="50dp"
+                android:fontFamily="casual"
+                android:textStyle="bold"
                 android:id="@+id/textView"
-                android:text="Register"
+                android:textAlignment="center"
+                android:text="Remoney"
+                android:layout_marginTop="90dp"
                 />
             <!-- Username -->
             <EditText
@@ -29,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Username"
                 android:inputType="text"
-                android:layout_marginBottom="16dp" />
+                android:layout_marginBottom="10dp" />
 
             <!-- Email -->
             <EditText
@@ -58,36 +63,16 @@
                 android:id="@+id/bt_register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Register" />
+                android:background="@drawable/roundbackround"
+                android:text="הרשמה" />
             <Button
+                android:background="@drawable/roundbackround"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
                 android:text="יש לך חשבון?התחבר"
                 android:id="@+id/btnlogin"
                 />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
