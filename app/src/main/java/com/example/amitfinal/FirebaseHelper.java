@@ -115,7 +115,7 @@ public interface Completed2
                double money2= Double.parseDouble(money);
                DocumentReference washingtonRef = db.collection(email).document("money");
                washingtonRef
-                       .update("money", money2+=5)
+                        .update("money", money2+=5)
                        .addOnSuccessListener(new OnSuccessListener<Void>() {
                            @Override
                            public void onSuccess(Void aVoid) {

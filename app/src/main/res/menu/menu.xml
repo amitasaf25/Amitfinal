@@ -20,7 +20,7 @@
             <item
                 app:showAsAction="never"
                 android:id="@+id/profile"
-                android:title="Profile"
+                android:title="Profile History"
                 android:icon="@drawable/profile"
                 />
     <item

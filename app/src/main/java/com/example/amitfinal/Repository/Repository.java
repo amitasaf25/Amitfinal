@@ -10,6 +10,7 @@ import com.example.amitfinal.FirebaseHelper;
 import com.example.amitfinal.LogShredPre;
 import com.example.amitfinal.User;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -111,7 +112,7 @@ public void CreateShredPre(String descrip,String date)
 }
 public List<LogShredPre> getShredpre()
 {
-List<LogShredPre> list=new LinkedList<>();
+List<LogShredPre> list=new ArrayList<>();
 
 sharedPreferences=context.getSharedPreferences("sharedpre",MODE_APPEND);
     Map<String, ?> allEntries = sharedPreferences.getAll();

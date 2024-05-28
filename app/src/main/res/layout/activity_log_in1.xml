@@ -5,17 +5,25 @@
     android:layout_height="match_parent"
     android:background="@drawable/backround_image"
     tools:context=".UI.LogIn1.LogIn1">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp" >
 
     <TextView
-        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="90dp"
-        android:textAlignment="center"
-        android:text="Remoney"
+        android:textSize="50dp"
         android:fontFamily="casual"
         android:textStyle="bold"
-        android:textSize="50dp"/>
+        android:id="@+id/textView"
+        android:textAlignment="center"
+        android:text="Remoney"
+        android:layout_marginTop="90dp"/>
 
     <EditText
         android:id="@+id/inputEmail"
@@ -23,8 +31,8 @@
         android:layout_height="wrap_content"
         android:hint="Email"
         android:inputType="textEmailAddress"
-        android:layout_marginTop="200dp"
-        android:padding="10dp"/>
+        android:layout_marginBottom="10dp"
+      />
 
     <EditText
         android:id="@+id/inputPassword"
@@ -32,28 +40,25 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:hint="Password"
-        android:layout_marginTop="250dp"
-        android:padding="10dp"/>
+        android:layout_marginBottom="16dp"
+         />
 
     <Button
         android:id="@+id/bt_sign_in"
         android:layout_width="match_parent"
-
         android:layout_height="wrap_content"
-        android:layout_marginTop="350dp"
         android:onClick="login"
         android:background="@drawable/roundbackround"
-        android:padding="10dp"
-        android:text="התחברות" />
+        android:text="Log in" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btnregister"
+        android:layout_marginVertical="10dp"
         android:background="@drawable/roundbackround"
-        android:text="איו לך חשבון? הירשם כאן"
-        android:layout_marginTop="410dp"
-        android:padding="10dp"
+        android:text="Don't have an account? Sign up"
         />
-
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>

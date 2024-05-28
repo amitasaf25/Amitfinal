@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.amitfinal.FirebaseHelper;
+import com.example.amitfinal.ProfileHistory;
 import com.example.amitfinal.R;
 import com.example.amitfinal.Repository.Repository;
 import com.example.amitfinal.UI.LogIn1.LogIn1;
@@ -41,6 +42,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.DecimalFormat;
+import java.util.Calendar;
 
 public class HomePage extends AppCompatActivity implements View.OnClickListener
 {
@@ -56,14 +58,19 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener
     {
         int id = item.getItemId();
 
-        if (id == R.id.home) {
-            Toast.makeText(this, "press home", Toast.LENGTH_SHORT).show();
+        if (id == R.id.home)
+        {
+            Toast.makeText(this, "you already in home", Toast.LENGTH_SHORT).show();
             return true;
-        } else if (id == R.id.profile) {
-            Toast.makeText(this, "press profile", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.profile)
+        {
+            Intent intent=new Intent(HomePage.this, ProfileHistory.class);
+            startActivity(intent);
             return true;
         } else if (id == R.id.logout) {
-            Toast.makeText(this, "press logout", Toast.LENGTH_SHORT).show();
+            FirebaseAuth.getInstance().signOut();
+            Intent intent1=new Intent(HomePage.this, LogIn1.class);
+            startActivity(intent1);
             return true;
         } else
         {
@@ -136,11 +143,9 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener
         btndes=findViewById(R.id.btndes);
         tvmoney=findViewById(R.id.tvmoney);
         tvname=findViewById(R.id.tvname);
-        btnlogout=findViewById(R.id.btnlogout);
         etdes=findViewById(R.id.etdes);
         tvdes=findViewById(R.id.tvdes);
         btncamera.setOnClickListener(this);
-        btnlogout.setOnClickListener(this);
         btndes.setOnClickListener(this);
         mAuth=FirebaseAuth.getInstance();
         firebaseHelper=new FirebaseHelper(this);
@@ -158,15 +163,6 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener
             cameraActivityResultLauncher.launch(intent);
 
         }
-        if (view==btnlogout) 
-        {
-            repository.CreateShredPre("gilad","11/1/2021");
-            repository.CreateShredPre("amit","11/2/2021");
-
-            // FirebaseAuth.getInstance().signOut();
-           // Intent intent=new Intent(HomePage.this, LogIn1.class);
-            //startActivity(intent);
-        }
         
         if (btndes==view)
         {
@@ -174,9 +170,23 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener
 
            if (user!= null)
            {
+               String strdes1=String.valueOf(etdes.getText());
+               if(!strdes1.isEmpty())
+               {
+                   if (repository.hasKey(strdes1))
+                   {
+                       Toast.makeText(this, "you already have this name of item", Toast.LENGTH_SHORT).show();
+                       return;
+                   }
+               }
+               else{
+                   Toast.makeText(this, "eror", Toast.LENGTH_SHORT).show();
+                   return;
+               }
                repository.UpdateMoney(user.getEmail(), new FirebaseHelper.Completed() {
                    @Override
-                   public void onComplete(boolean flag) {
+                   public void onComplete(boolean flag)
+                   {
                     String strdes =String.valueOf(etdes.getText());
                        if (flag&&!strdes.isEmpty())
                        {
@@ -193,6 +203,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener
                                    tvmoney.setText(money);
                                }
                            });
+                           repository.CreateShredPre(strdes,fill());
                        }
                        else
                        {
@@ -202,5 +213,19 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener
                });
            }
         }
+    }
+    public String fill()
+    {
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1; // Months are zero-based
+        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
+        int second = calendar.get(Calendar.SECOND);
+
+        String currentTimeAndDate = "time and date of report: " + hour + ":" + minute + ":" + second + " " + month + "/" + dayOfMonth + "/" + year;
+
+        return currentTimeAndDate;
     }
 }

@@ -4,7 +4,8 @@ public class LogShredPre
 {
     String descrip,date;
 
-    public LogShredPre(String descrip, String date) {
+    public LogShredPre(String descrip, String date)
+    {
         this.descrip = descrip;
         this.date = date;
     }
