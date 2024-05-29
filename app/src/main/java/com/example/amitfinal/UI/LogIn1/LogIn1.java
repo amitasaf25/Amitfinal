@@ -39,8 +39,7 @@ public class LogIn1 extends AppCompatActivity implements View.OnClickListener
         inputPassword = findViewById(R.id.inputPassword);
         bt_sign_in = findViewById(R.id.bt_sign_in);
        btnregister=findViewById(R.id.btnregister);
-       firebaseHelper=new FirebaseHelper(this);
-       repository=new Repository(this,firebaseHelper);
+       repository=new Repository(this);
         bt_sign_in.setOnClickListener(this);
            btnregister.setOnClickListener(this);
 

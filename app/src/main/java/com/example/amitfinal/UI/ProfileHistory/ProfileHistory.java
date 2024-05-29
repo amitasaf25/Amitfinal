@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.amitfinal.EditProfile;
 import com.example.amitfinal.LogShredPre;
 import com.example.amitfinal.R;
 import com.example.amitfinal.Repository.Repository;
@@ -58,13 +59,21 @@ public class ProfileHistory extends AppCompatActivity
             Intent intent=new Intent(ProfileHistory.this, HomePage.class);
             startActivity(intent);
             return true;
-        } else if (id == R.id.profile)
+        }
+        else if (id == R.id.profile2)
+        {
+            Intent intent = new Intent(ProfileHistory.this, EditProfile.class);
+            startActivity(intent);
+            return true;
+        }
+        else if (id == R.id.profile)
         {
             Toast.makeText(this, "you already in profile history", Toast.LENGTH_SHORT).show();
             return true;
         } else if (id == R.id.logout) {
             FirebaseAuth.getInstance().signOut();
             Intent intent1=new Intent(ProfileHistory.this, LogIn1.class);
+            intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent1);
             return true;
         } else

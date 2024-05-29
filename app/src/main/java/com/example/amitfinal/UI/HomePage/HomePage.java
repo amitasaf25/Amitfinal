@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.amitfinal.DB.FirebaseHelper;
+import com.example.amitfinal.EditProfile;
 import com.example.amitfinal.UI.ProfileHistory.ProfileHistory;
 import com.example.amitfinal.R;
 import com.example.amitfinal.Repository.Repository;
@@ -65,8 +66,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener
         btncamera.setOnClickListener(this);
         btndes.setOnClickListener(this);
         mAuth = FirebaseAuth.getInstance();
-        firebaseHelper = new FirebaseHelper(this);
-        repository = new Repository(this, firebaseHelper);
+        repository = new Repository(this);
     }
 
 
@@ -80,8 +80,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener
         if (user != null)
         {
             tvname.setText(user.getDisplayName());
-            firebaseHelper = new FirebaseHelper(this);
-            repository = new Repository(this, firebaseHelper);
+            repository = new Repository(this);
             repository.showMoney(user.getEmail(), new FirebaseHelper.Completed2() {
                 @Override
                 public void onComplete(String money)
@@ -207,6 +206,12 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener
             Toast.makeText(this, "you already in home", Toast.LENGTH_SHORT).show();
             return true;
         }
+        else if (id == R.id.profile2)
+        {
+            Intent intent = new Intent(HomePage.this, EditProfile.class);
+            startActivity(intent);
+            return true;
+        }
         else if (id == R.id.profile)
         {
             Intent intent = new Intent(HomePage.this, ProfileHistory.class);
@@ -217,6 +222,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener
         {
             FirebaseAuth.getInstance().signOut();
             Intent intent1 = new Intent(HomePage.this, LogIn1.class);
+            intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent1);
             return true;
         }

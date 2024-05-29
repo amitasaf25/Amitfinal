@@ -43,8 +43,7 @@ private MainActivitymodule ma1;
         inputPassword = findViewById(R.id.inputPassword);
         bt_register = findViewById(R.id.bt_register);
         btnlogin=findViewById(R.id.btnlogin);
-        firebaseHelper=new FirebaseHelper(this);
-        repository=new Repository(this,firebaseHelper);
+        repository=new Repository(this);
         bt_register.setOnClickListener(this);
         btnlogin.setOnClickListener(this);
     }

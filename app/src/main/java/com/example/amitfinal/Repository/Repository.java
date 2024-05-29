@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import com.example.amitfinal.DB.FirebaseHelper;
 import com.example.amitfinal.LogShredPre;
 import com.example.amitfinal.Repository.Moudle.User;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,15 +23,14 @@ public class Repository
     private FirebaseHelper firebaseHelper;
 
     // בנאי ראשוני המאתחל את הקשר ועוזר Firebase
-    public Repository(Context context) {
+    public Repository(Context context)
+    {
         this.context = context;
         this.firebaseHelper = new FirebaseHelper(context);
     }
+    public Repository()
+    {
 
-    // בנאי נוסף המאפשר להגדיר עוזר Firebase מסוים
-    public Repository(Context context, FirebaseHelper firebaseHelper) {
-        this.context = context;
-        this.firebaseHelper = firebaseHelper;
     }
 
     // פונקציה להתחברות של משתמש
@@ -126,5 +126,19 @@ public class Repository
     {
         sharedPreferences = context.getSharedPreferences("sharedpre", MODE_PRIVATE);
         return sharedPreferences.contains(key); // החזרת תוצאת הבדיקה
+    }
+    //פעולה למחיקת חשבון
+    public void deleteAccount(FirebaseUser user,FirebaseHelper.Completed callback)
+    {
+        firebaseHelper.deleteAccount(user,callback);
+    }
+    //פעולה לאיפוס סיסמה
+    public void reset(FirebaseUser user,String password,FirebaseHelper.Completed callback)
+    {
+     firebaseHelper.reset(user,password,callback);
+    }
+    public void deleteUserDocument(String email,FirebaseHelper.Completed callback)
+    {
+        firebaseHelper.deleteUserDocument(email,callback);
     }
 }

@@ -158,6 +158,56 @@ public interface Completed2
                    }
                });
    }
+    public void deleteAccount(FirebaseUser user, Completed callback)
+    {
+        user.delete()
+                .addOnCompleteListener(new OnCompleteListener<Void>()
+                {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            callback.onComplete(true);
+                        }
+                        callback.onComplete(false);
+                    }
+                });
+    }
+    public  void reset(FirebaseUser user,String password,Completed callback)
+    {
+
+        user.updatePassword(password)
+                .addOnCompleteListener(new OnCompleteListener<Void>()
+                {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task)
+                    {
+                        if (task.isSuccessful())
+                        {
+                            callback.onComplete(true);
+                        }
+                        else
+                        {
+                            callback.onComplete(false);
+                        }
+                    }
+                });
+    }
+    public void deleteUserDocument(String email,Completed callback) {
+        db.collection(email).document("money")
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                      callback.onComplete(true);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                      callback.onComplete(false);
+                    }
+                });
+    }
 
 
 
