@@ -13,7 +13,7 @@
         android:theme="@style/Theme.AmitFinal"
         tools:targetApi="31">
         <activity
-            android:name=".ProfileHistory"
+            android:name=".UI.ProfileHistory.ProfileHistory"
             android:exported="false" />
         <activity
             android:name=".UI.LogIn1.LogIn1"

@@ -9,24 +9,13 @@
               <type value="RUNNING_DEVICE_TARGET" />
               <deviceKey>
                 <Key>
-                  <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\User\.android\avd\Pixel_6_Pro_API_33_1.avd" />
+                  <type value="SERIAL_NUMBER" />
+                  <value value="R5CRA10PX1V" />
                 </Key>
               </deviceKey>
             </Target>
           </runningDeviceTargetSelectedWithDropDown>
-          <targetSelectedWithDropDown>
-            <Target>
-              <type value="QUICK_BOOT_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\User\.android\avd\Pixel_6_Pro_API_33_1.avd" />
-                </Key>
-              </deviceKey>
-            </Target>
-          </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-05-28T10:42:47.147590500Z" />
+          <timeTargetWasSelectedWithDropDown value="2024-05-29T10:54:49.613768200Z" />
         </State>
       </entry>
     </value>

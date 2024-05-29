@@ -1,6 +1,5 @@
 package com.example.amitfinal.UI.LogIn1;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
@@ -12,19 +11,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.amitfinal.FirebaseHelper;
+import com.example.amitfinal.DB.FirebaseHelper;
 import com.example.amitfinal.R;
 import com.example.amitfinal.Repository.Repository;
 import com.example.amitfinal.UI.HomePage.HomePage;
 import com.example.amitfinal.UI.MainActivity.MainActivity;
-import com.example.amitfinal.User;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
+import com.example.amitfinal.Repository.Moudle.User;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
-public class LogIn1 extends AppCompatActivity implements View.OnClickListener {
+public class LogIn1 extends AppCompatActivity implements View.OnClickListener
+{
     private FirebaseAuth mAuth;
     private FirebaseHelper firebaseHelper;
     private String email,password;

@@ -1,12 +1,14 @@
-package com.example.amitfinal;
+package com.example.amitfinal.UI.ProfileHistory;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.amitfinal.LogShredPre;
+import com.example.amitfinal.R;
 
 import java.util.List;
 
@@ -14,9 +16,11 @@ public class Adapter extends  RecyclerView.Adapter<Adapter.ViewHolder>
 {
     private List<LogShredPre> infoList;
 
+    // בנאי לקבלת רשימת הפריטים
     public Adapter(List<LogShredPre> infoList) {
         this.infoList = infoList;
     }
+
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

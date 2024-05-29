@@ -1,4 +1,4 @@
-package com.example.amitfinal;
+package com.example.amitfinal.DB;
 
 import android.content.Context;
 import android.content.Intent;
@@ -47,6 +47,8 @@ public interface Completed2
 {
         void onComplete(String money);
 }
+
+    // פעולה לקבלת כסף מה- Firestore ועדכון סכום הכסף במסד הנתונים
     public void GetMoney(String email,double money,Completed callback)
     {
         Map <String, Object> user =new HashMap<>();
@@ -64,7 +66,7 @@ public interface Completed2
         });
     }
 
-
+    //פעולה להתחברות משתמש קיים
     public void signIn(String email, String password,Completed callback){
         mAuth.signInWithEmailAndPassword(email,password)
                 .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
@@ -85,6 +87,7 @@ public interface Completed2
                 });
 
     }
+    // פעולה ליצירת משתמש חדש
     public void signUp(String email, String password,String username, Completed callback)
     {
 
@@ -108,7 +111,9 @@ public interface Completed2
     }
         });
    }
-   public void UpdateMoney(String email,Completed callback){
+    // פעולה לעדכון סכום הכסף במסד הנתונים
+
+    public void UpdateMoney(String email,Completed callback){
        showMoney(email, new Completed2() {
            @Override
            public void onComplete(String money) {
@@ -134,6 +139,7 @@ public interface Completed2
    }
 
 
+    // פעולה להצגת כמות הכסף הנוכחית ממסד הנתונים
    public void showMoney(String email, Completed2 callback)
    {
        FirebaseFirestore db = FirebaseFirestore.getInstance();

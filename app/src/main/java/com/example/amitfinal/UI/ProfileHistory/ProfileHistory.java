@@ -1,4 +1,4 @@
-package com.example.amitfinal;
+package com.example.amitfinal.UI.ProfileHistory;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.amitfinal.LogShredPre;
+import com.example.amitfinal.R;
 import com.example.amitfinal.Repository.Repository;
 import com.example.amitfinal.UI.HomePage.HomePage;
 import com.example.amitfinal.UI.LogIn1.LogIn1;
@@ -20,6 +22,25 @@ import java.util.List;
 
 public class ProfileHistory extends AppCompatActivity
 {
+    private RecyclerView recyclerView;
+    private com.example.amitfinal.UI.ProfileHistory.Adapter Adapter;
+
+    private Repository repository;
+    // פעולה שמופעלת בזמן פתיחת המסך
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_profile_history);
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        repository=new Repository(this);
+        List<LogShredPre> infoList =  repository.getShredpre();
+
+        // הצגת הפריטים ברשימה
+        Adapter = new Adapter(infoList);
+        recyclerView.setAdapter(Adapter);
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -50,29 +71,5 @@ public class ProfileHistory extends AppCompatActivity
         {
             return super.onOptionsItemSelected(item);
         }
-    }
-    private RecyclerView recyclerView;
-    private Adapter Adapter;
-
-    private Repository repository;
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile_history);
-        recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        repository=new Repository(this);
-        List<LogShredPre> infoList =  repository.getShredpre();
-//        for (int i = 0; i <infoList.size() ; i++)
-//        {
-//            infoList.add(new LogShredPre("amit", ));
-//        }
-
-
-
-
-        Adapter = new Adapter(infoList);
-        recyclerView.setAdapter(Adapter);
     }
 }

@@ -11,17 +11,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.amitfinal.Repository.Repository;
+import com.example.amitfinal.UI.ProfileHistory.Adapter;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class ProfileFragment extends Fragment
 {
 
 
     private RecyclerView recyclerView;
-    private Adapter Adapter;
+    private com.example.amitfinal.UI.ProfileHistory.Adapter Adapter;
 
     private Repository repository;
 

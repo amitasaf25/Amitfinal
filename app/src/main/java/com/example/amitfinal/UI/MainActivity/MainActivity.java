@@ -2,27 +2,21 @@ package com.example.amitfinal.UI.MainActivity;
 
 import android.app.Dialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.amitfinal.FirebaseHelper;
+import com.example.amitfinal.DB.FirebaseHelper;
 import com.example.amitfinal.R;
 import com.example.amitfinal.Repository.Repository;
 import com.example.amitfinal.UI.HomePage.HomePage;
 import com.example.amitfinal.UI.LogIn1.LogIn1;
-import com.example.amitfinal.User;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
+import com.example.amitfinal.Repository.Moudle.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -37,18 +31,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 private MainActivitymodule ma1;
-
-    @Override
-    protected void onStart()
-    {
-        super.onStart();
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null)
-        {
-           Intent intent=new Intent(MainActivity.this, HomePage.class);
-           startActivity(intent);
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -66,6 +48,19 @@ private MainActivitymodule ma1;
         bt_register.setOnClickListener(this);
         btnlogin.setOnClickListener(this);
     }
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null)
+        {
+           Intent intent=new Intent(MainActivity.this, HomePage.class);
+           startActivity(intent);
+        }
+    }
+
+
 
     @Override
     public void onClick(View v)
@@ -126,6 +121,8 @@ private MainActivitymodule ma1;
 
 
     }
+
+    // פעולה להצגת הודעת הצלחה
     public void success()
     {
         Dialog builder = new Dialog(this);
