@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:layoutDirection="rtl"
     android:orientation="vertical"
-    android:background="@drawable/backround_image"
+   android:background="@drawable/image1"
     tools:context=".UI.HomePage.HomePage">
 
     <TextView
@@ -45,6 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btncamera"
+        android:textColor="@color/green"
         android:background="@drawable/roundbackround"
         android:layout_gravity="center"
         android:textStyle="bold"
@@ -81,7 +82,7 @@
 
         />
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/image1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -90,6 +91,7 @@
         android:layout_marginTop="16dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
+        app:shapeAppearanceOverlay="@style/RoundImage"
         />
 
 
