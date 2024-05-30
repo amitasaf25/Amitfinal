@@ -7,7 +7,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.example.amitfinal.DB.FirebaseHelper;
-import com.example.amitfinal.LogShredPre;
+import com.example.amitfinal.Repository.Moudle.LogShredPre;
 import com.example.amitfinal.Repository.Moudle.User;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -22,15 +22,12 @@ public class Repository
     private SharedPreferences sharedPreferences;
     private FirebaseHelper firebaseHelper;
 
+
     // בנאי ראשוני המאתחל את הקשר ועוזר Firebase
     public Repository(Context context)
     {
         this.context = context;
         this.firebaseHelper = new FirebaseHelper(context);
-    }
-    public Repository()
-    {
-
     }
 
     // פונקציה להתחברות של משתמש
@@ -67,7 +64,8 @@ public class Repository
         firebaseHelper = new FirebaseHelper(context);
         firebaseHelper.GetMoney(email, money, new FirebaseHelper.Completed() {
             @Override
-            public void onComplete(boolean flag) {
+            public void onComplete(boolean flag)
+            {
                 callback.onComplete(flag); // החזרת תוצאת הפעולה
             }
         });
@@ -78,7 +76,8 @@ public class Repository
         firebaseHelper = new FirebaseHelper(context);
         firebaseHelper.UpdateMoney(email, new FirebaseHelper.Completed() {
             @Override
-            public void onComplete(boolean flag) {
+            public void onComplete(boolean flag)
+            {
                 callback.onComplete(flag); // החזרת תוצאת הפעולה
             }
         });
@@ -107,6 +106,7 @@ public class Repository
         editor.commit(); // שמירת המידע בהעדפות משותפות
     }
 
+
     // פונקציה לקבלת כל הרשומות ב-SharedPreferences
     public List<LogShredPre> getShredpre()
     {
@@ -120,6 +120,15 @@ public class Repository
         }
         return list; // החזרת הרשימה
     }
+
+    public void LogOut()
+    {
+        sharedPreferences = context.getSharedPreferences("sharedpre", MODE_APPEND);
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
+    }
+
 
     // פונקציה לבדוק אם string מסוים קיים בSharedPreferences
     public boolean hasKey(String key)

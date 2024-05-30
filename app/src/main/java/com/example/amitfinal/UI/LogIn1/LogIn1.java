@@ -3,6 +3,7 @@ package com.example.amitfinal.UI.LogIn1;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -27,19 +28,18 @@ public class LogIn1 extends AppCompatActivity implements View.OnClickListener
     private EditText inputEmail,inputPassword;
     private Button bt_sign_in;
      private Button btnregister;
-    private Repository repository;
-    private LogIn1module lg1;
+    private LogIn1module logIn1module;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_log_in1);
+        logIn1module=new LogIn1module(this);
         mAuth = FirebaseAuth.getInstance();
         inputEmail=findViewById(R.id.inputEmail);
         inputPassword = findViewById(R.id.inputPassword);
         bt_sign_in = findViewById(R.id.bt_sign_in);
        btnregister=findViewById(R.id.btnregister);
-       repository=new Repository(this);
         bt_sign_in.setOnClickListener(this);
            btnregister.setOnClickListener(this);
 
@@ -59,11 +59,19 @@ public class LogIn1 extends AppCompatActivity implements View.OnClickListener
                 Toast.makeText(this, "Eror", Toast.LENGTH_SHORT).show();
                 return;
             }
+            // יצירת ProgressDialog
+            ProgressDialog progressDialog = new ProgressDialog(this);
+            progressDialog.setMessage("Signing in...");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
             User user=new User(inputEmail.getText().toString().trim(),inputPassword.getText().toString().trim());
-            repository.signIn(user, new FirebaseHelper.Completed() {
+            logIn1module.signIn(user, new FirebaseHelper.Completed()
+            {
                 @Override
                 public void onComplete(boolean flag) {
-                    if (flag) {
+                    progressDialog.dismiss();
+                    if (flag)
+                    {
                         success();
                     }
                     else
@@ -102,6 +110,7 @@ if(btnregister==view){
             {
                 builder.dismiss();
                 Intent intent = new Intent(LogIn1.this,HomePage.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
             }
         });

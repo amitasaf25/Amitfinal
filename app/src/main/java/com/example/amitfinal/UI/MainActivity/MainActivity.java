@@ -24,26 +24,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 {
     private FirebaseAuth mAuth;
     private FirebaseHelper firebaseHelper;
-    private Repository repository;
     private String email,password;
     private EditText inputEmail,inputPassword,inputUsername;
     private Button bt_register,btnlogin;
 
 
-private MainActivitymodule ma1;
+   private MainActivitymodule mainActivitymodule;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+         mainActivitymodule=new MainActivitymodule(this);
         mAuth = FirebaseAuth.getInstance();
         inputUsername=findViewById(R.id.inputUsername);
         inputEmail = findViewById(R.id.inputEmail);
         inputPassword = findViewById(R.id.inputPassword);
         bt_register = findViewById(R.id.bt_register);
         btnlogin=findViewById(R.id.btnlogin);
-        repository=new Repository(this);
         bt_register.setOnClickListener(this);
         btnlogin.setOnClickListener(this);
     }
@@ -55,6 +54,7 @@ private MainActivitymodule ma1;
         if (user != null)
         {
            Intent intent=new Intent(MainActivity.this, HomePage.class);
+           intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
            startActivity(intent);
         }
     }
@@ -75,14 +75,14 @@ private MainActivitymodule ma1;
                 return;
             }
             User user=new User(inputEmail.getText().toString().trim(),inputPassword.getText().toString().trim(),inputUsername.getText().toString());
-            repository.signUp(user, new FirebaseHelper.Completed()
+            mainActivitymodule.signUp(user, new FirebaseHelper.Completed()
             {
                 @Override
                 public void onComplete(boolean flag)
                 {
                     if(flag)
                     {
-                        repository.getMoney(inputEmail.getText().toString(), 0, new FirebaseHelper.Completed() {
+                        mainActivitymodule.getMoney(inputEmail.getText().toString(), 0, new FirebaseHelper.Completed() {
                             @Override
                             public void onComplete(boolean flag)
                             {
@@ -111,8 +111,6 @@ private MainActivitymodule ma1;
         {
             Intent intent=new Intent(MainActivity.this, LogIn1.class);
             startActivity(intent);
-
-
 
         }
 

@@ -9,7 +9,7 @@
     android:background="@drawable/image1"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".EditProfile">
+    tools:context=".UI.EditProfile.EditProfile">
 
 
     <androidx.cardview.widget.CardView

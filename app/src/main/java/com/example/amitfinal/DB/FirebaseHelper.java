@@ -164,11 +164,17 @@ public interface Completed2
                 .addOnCompleteListener(new OnCompleteListener<Void>()
                 {
                     @Override
-                    public void onComplete(@NonNull Task<Void> task) {
+                    public void onComplete(@NonNull Task<Void> task)
+                    {
+
                         if (task.isSuccessful()) {
+
                             callback.onComplete(true);
                         }
-                        callback.onComplete(false);
+                        else
+                        {
+                            callback.onComplete(false);
+                        }
                     }
                 });
     }
@@ -192,10 +198,12 @@ public interface Completed2
                     }
                 });
     }
-    public void deleteUserDocument(String email,Completed callback) {
+    public void deleteUserDocument(String email,Completed callback)
+    {
         db.collection(email).document("money")
                 .delete()
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                .addOnSuccessListener(new OnSuccessListener<Void>()
+                {
                     @Override
                     public void onSuccess(Void aVoid) {
                       callback.onComplete(true);

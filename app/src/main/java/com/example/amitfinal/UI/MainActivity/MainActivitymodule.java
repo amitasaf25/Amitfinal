@@ -4,32 +4,30 @@ import android.content.Context;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.amitfinal.DB.FirebaseHelper;
+import com.example.amitfinal.Repository.Moudle.User;
+import com.example.amitfinal.Repository.Repository;
+
 public class MainActivitymodule
 {
     Context context;
+    Repository repository;
 
     public MainActivitymodule(Context c)
     {
         this.context= c;
-
+        repository=new Repository(c);
     }
 
 
-    public boolean CheckErors(EditText et1,EditText et2)
+    public void signUp(User user, FirebaseHelper.Completed completed)
     {
-        String email = et1.getText().toString().trim();
-        String password = et2.getText().toString().trim();
-        if(email.isEmpty() )
-        {
-            Toast.makeText(context, "email problem", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        if(password.isEmpty() || password.length()<8)
-        {
-            Toast.makeText(context, "password problem", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        return true;
-
+        repository.signUp(user,completed);
     }
+
+    public void getMoney(String string, int i, FirebaseHelper.Completed failed)
+    {
+        repository.getMoney(string,i,failed);
+    }
+
 }

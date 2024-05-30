@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.amitfinal.LogShredPre;
+import com.example.amitfinal.Repository.Moudle.LogShredPre;
 import com.example.amitfinal.R;
 
 import java.util.List;

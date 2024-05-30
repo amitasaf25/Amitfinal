@@ -22,7 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.amitfinal.DB.FirebaseHelper;
-import com.example.amitfinal.EditProfile;
+import com.example.amitfinal.UI.EditProfile.EditProfile;
 import com.example.amitfinal.UI.ProfileHistory.ProfileHistory;
 import com.example.amitfinal.R;
 import com.example.amitfinal.Repository.Repository;
@@ -44,9 +44,9 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener
     TextView tvmoney;
     TextView tvdes;
     Bitmap photo;
-    Repository repository;
-    FirebaseHelper firebaseHelper;
+//    Repository repository;
     FirebaseUser user;
+    HomePagemodule homePagemodule;
 
     // אתחול הפעילות והמשתנים
     @Override
@@ -56,6 +56,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener
         setContentView(R.layout.activity_home_page);
 
         // אתחול המשתנים
+        homePagemodule = new HomePagemodule(this);
         image1 = findViewById(R.id.image1);
         btncamera = findViewById(R.id.btncamera);
         btndes = findViewById(R.id.btndes);
@@ -66,8 +67,8 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener
         btncamera.setOnClickListener(this);
         btndes.setOnClickListener(this);
         mAuth = FirebaseAuth.getInstance();
-        repository = new Repository(this);
     }
+
 
 
     // אתחול ראשוני של המסך
@@ -75,20 +76,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener
     protected void onStart()
     {
         super.onStart();
-
-        user = mAuth.getCurrentUser();
-        if (user != null)
-        {
-            tvname.setText(user.getDisplayName());
-            repository = new Repository(this);
-            repository.showMoney(user.getEmail(), new FirebaseHelper.Completed2() {
-                @Override
-                public void onComplete(String money)
-                {
-                    tvmoney.setText(money);
-                }
-            });
-        }
+        homePagemodule.start(user,mAuth,tvname,tvmoney);
     }
 
 
@@ -125,14 +113,9 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener
                 String strdes1 = etdes.getText().toString().trim();
                 if (!strdes1.isEmpty())
                 {
-                    if (repository != null && repository.hasKey(strdes1))
+                    if (homePagemodule.hasKey(strdes1))
                     {
                         Toast.makeText(this, "You already have this name of item", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    else if (repository == null)
-                    {
-                        Toast.makeText(this, "Error: repository is null", Toast.LENGTH_SHORT).show();
                         return;
                     }
                 }
@@ -142,7 +125,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener
                     return;
                 }
 
-                repository.UpdateMoney(user.getEmail(), new FirebaseHelper.Completed() {
+                homePagemodule.UpdateMoney(user.getEmail(), new FirebaseHelper.Completed() {
                     @Override
                     public void onComplete(boolean flag)
                     {
@@ -158,7 +141,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener
 
                                 Toast.makeText(HomePage.this, "You got 5 coins", Toast.LENGTH_SHORT).show();
 
-                                repository.showMoney(user.getEmail(), new FirebaseHelper.Completed2() {
+                                homePagemodule.showMoney(user.getEmail(), new FirebaseHelper.Completed2() {
                                     @Override
                                     public void onComplete(String money)
                                     {
@@ -166,7 +149,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener
                                     }
                                 });
 
-                                repository.CreateShredPre(strdes, fill());
+                                homePagemodule.CreateShredPre(strdes, fill());
                             }
                             else
                             {
@@ -221,6 +204,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener
         else if (id == R.id.logout)
         {
             FirebaseAuth.getInstance().signOut();
+            homePagemodule.LogOut();
             Intent intent1 = new Intent(HomePage.this, LogIn1.class);
             intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent1);

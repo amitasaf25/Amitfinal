@@ -1,4 +1,4 @@
-package com.example.amitfinal;
+package com.example.amitfinal.UI.EditProfile;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.amitfinal.DB.FirebaseHelper;
+import com.example.amitfinal.R;
 import com.example.amitfinal.Repository.Repository;
 import com.example.amitfinal.UI.HomePage.HomePage;
 import com.example.amitfinal.UI.LogIn1.LogIn1;
@@ -28,8 +29,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
     private FirebaseUser user;
   private   Button reset;
   private  Button delete;
-    private Repository repository;
-
+private EditProfileMoudle editProfileMoudle;
 
 
 
@@ -43,8 +43,6 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
         password=findViewById(R.id.password);
         reset=findViewById(R.id.reset);
         delete=findViewById(R.id.delete);
-
-        repository=new Repository(this);
         reset.setOnClickListener(this);
         delete.setOnClickListener(this);
 
@@ -66,7 +64,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
       {
         if (user!=null)
         {
-            repository.reset(user, password.getText().toString().trim(), new FirebaseHelper.Completed()
+            editProfileMoudle.reset(user, password.getText().toString().trim(), new FirebaseHelper.Completed()
             {
                 @Override
                 public void onComplete(boolean flag)
@@ -93,14 +91,15 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
           if (user!=null)
           {
 
-              repository.deleteAccount(user, new FirebaseHelper.Completed()
+              editProfileMoudle.deleteAccount(user, new FirebaseHelper.Completed()
               {
+
                   @Override
                   public void onComplete(boolean flag)
                   {
                    if(flag)
                    {
-                       repository.deleteUserDocument(user.getEmail(), new FirebaseHelper.Completed() {
+                       editProfileMoudle.deleteUserDocument(user.getEmail(), new FirebaseHelper.Completed() {
                            @Override
                            public void onComplete(boolean flag)
                            {
@@ -167,8 +166,10 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
             Intent intent1=new Intent(EditProfile.this,ProfileHistory.class);
             startActivity(intent1);
             return true;
-        } else if (id == R.id.logout) {
+        } else if (id == R.id.logout)
+        {
             FirebaseAuth.getInstance().signOut();
+            editProfileMoudle.LogOut();
             Intent intent1=new Intent(EditProfile.this, LogIn1.class);
             intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent1);

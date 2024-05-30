@@ -11,10 +11,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.example.amitfinal.EditProfile;
-import com.example.amitfinal.LogShredPre;
+import com.example.amitfinal.UI.EditProfile.EditProfile;
+import com.example.amitfinal.Repository.Moudle.LogShredPre;
 import com.example.amitfinal.R;
-import com.example.amitfinal.Repository.Repository;
 import com.example.amitfinal.UI.HomePage.HomePage;
 import com.example.amitfinal.UI.LogIn1.LogIn1;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,19 +23,19 @@ import java.util.List;
 public class ProfileHistory extends AppCompatActivity
 {
     private RecyclerView recyclerView;
+    private ProfileHistoryMoudle profileHistoryMoudle;
     private com.example.amitfinal.UI.ProfileHistory.Adapter Adapter;
 
-    private Repository repository;
     // פעולה שמופעלת בזמן פתיחת המסך
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_history);
+        profileHistoryMoudle=new ProfileHistoryMoudle(this);
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        repository=new Repository(this);
-        List<LogShredPre> infoList =  repository.getShredpre();
+        List<LogShredPre> infoList =  profileHistoryMoudle.getShredpre();
 
         // הצגת הפריטים ברשימה
         Adapter = new Adapter(infoList);
@@ -70,8 +69,10 @@ public class ProfileHistory extends AppCompatActivity
         {
             Toast.makeText(this, "you already in profile history", Toast.LENGTH_SHORT).show();
             return true;
-        } else if (id == R.id.logout) {
+        } else if (id == R.id.logout)
+        {
             FirebaseAuth.getInstance().signOut();
+            profileHistoryMoudle.LogOut();
             Intent intent1=new Intent(ProfileHistory.this, LogIn1.class);
             intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent1);

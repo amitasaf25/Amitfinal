@@ -11,6 +11,7 @@
     tools:context=".UI.HomePage.HomePage">
 
     <TextView
+        android:layout_marginLeft="10dp"
         android:layout_width="wrap_content"
         android:layout_height="100dp"
         android:textStyle="bold"
@@ -23,6 +24,7 @@
         />
 
 <ImageView
+    android:layout_marginRight="10dp"
     android:layout_width="30dp"
     android:layout_height="30dp"
     android:background="@drawable/baseline_monetization"
@@ -45,16 +47,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btncamera"
+
         android:textColor="@color/green"
         android:background="@drawable/roundbackround"
         android:layout_gravity="center"
         android:textStyle="bold"
         android:textSize="25dp"
+        android:layout_marginHorizontal="20dp"
         android:layout_marginTop="100dp"
         android:text="have you recycle today?"/>
 
     <TextView
         android:id="@+id/tvdes"
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="170dp"
@@ -63,11 +68,12 @@
         android:textStyle="bold" />
 
     <EditText
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
         android:visibility="invisible"
-        android:textColor="@color/green"
+        android:textColor="@color/white"
         android:textStyle="bold"
         android:id="@+id/etdes"/>
     <Button
@@ -89,11 +95,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/btndes"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="35dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        app:shapeAppearanceOverlay="@style/RoundImage"
-        />
+        app:shapeAppearanceOverlay="@style/RoundImage" />
 
 
 

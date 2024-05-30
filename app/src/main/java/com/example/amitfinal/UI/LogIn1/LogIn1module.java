@@ -4,33 +4,23 @@ import android.content.Context;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.amitfinal.DB.FirebaseHelper;
+import com.example.amitfinal.Repository.Moudle.User;
+import com.example.amitfinal.Repository.Repository;
+
 public class LogIn1module {
 
     private Context context;
+    Repository repository;
     public LogIn1module(Context c)
     {
         this.context = c;
+        repository=new Repository(c);
     }
 
-    public boolean CheckErors(EditText et1,EditText et2)
+
+    public void signIn(User user, FirebaseHelper.Completed failed)
     {
-
-
-        String strEmail,strPassword;
-        strEmail=et1.getText().toString().trim();
-        strPassword=et2.getText().toString().trim();
-        if(strEmail.isEmpty() )
-        {
-            Toast.makeText(context, "email problem", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        if(strPassword.isEmpty() || strPassword.length()<8)
-        {
-            Toast.makeText(context, "password problem", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        return true;
-
+        repository.signIn(user,failed);
     }
-
 }
