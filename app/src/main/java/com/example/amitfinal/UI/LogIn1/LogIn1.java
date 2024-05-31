@@ -56,7 +56,7 @@ public class LogIn1 extends AppCompatActivity implements View.OnClickListener
             String input2= String.valueOf(inputPassword.getText());
             if(input1.isEmpty()||input2.isEmpty())
             {
-                Toast.makeText(this, "Eror", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Email or password are empty", Toast.LENGTH_SHORT).show();
                 return;
             }
             // יצירת ProgressDialog
@@ -76,7 +76,7 @@ public class LogIn1 extends AppCompatActivity implements View.OnClickListener
                     }
                     else
                     {
-                        Toast.makeText(LogIn1.this, "failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LogIn1.this, "failed,can't find user like this", Toast.LENGTH_SHORT).show();
                     }
                 }
 

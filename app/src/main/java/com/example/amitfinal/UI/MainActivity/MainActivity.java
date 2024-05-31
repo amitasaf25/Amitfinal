@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String input3= String.valueOf(inputPassword.getText());
             if(input.isEmpty()||input2.isEmpty()||input3.isEmpty())
             {
-                Toast.makeText(this, "Eror", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Username, email or password are empty", Toast.LENGTH_SHORT).show();
                 return;
             }
             User user=new User(inputEmail.getText().toString().trim(),inputPassword.getText().toString().trim(),inputUsername.getText().toString());
@@ -92,14 +92,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 }
                                 else
                                 {
-                                    Toast.makeText(MainActivity.this, "failed", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(MainActivity.this, "Failed", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
                     }
                     else
                     {
-                        Toast.makeText(MainActivity.this, "failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "failed, email or password wrong", Toast.LENGTH_SHORT).show();
                     }
                 }
 

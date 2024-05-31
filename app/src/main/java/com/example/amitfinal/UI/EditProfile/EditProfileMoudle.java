@@ -8,10 +8,10 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class EditProfileMoudle
 {
-  private    Repository repository;
- private     Context c;
+  private Repository repository;
+ private  Context c;
 
-    public EditProfileMoudle(Repository repository, Context c)
+    public EditProfileMoudle( Context c)
     {
         this.c = c;
         repository=new Repository(c);

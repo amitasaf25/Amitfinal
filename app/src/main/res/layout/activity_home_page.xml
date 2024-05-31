@@ -47,7 +47,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btncamera"
-
         android:textColor="@color/green"
         android:background="@drawable/roundbackround"
         android:layout_gravity="center"
@@ -63,8 +62,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="170dp"
-        android:textColor="@color/black"
-        android:textSize="15dp"
+        android:textColor="@color/white"
+        android:textSize="20dp"
         android:textStyle="bold" />
 
     <EditText
@@ -74,12 +73,13 @@
         android:layout_marginTop="200dp"
         android:visibility="invisible"
         android:textColor="@color/white"
+
         android:textStyle="bold"
         android:id="@+id/etdes"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="270dp"
         android:visibility="invisible"
         android:textStyle="bold"
         android:textColor="@color/green"

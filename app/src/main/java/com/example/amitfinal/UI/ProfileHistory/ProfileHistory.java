@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -71,14 +73,28 @@ public class ProfileHistory extends AppCompatActivity
             return true;
         } else if (id == R.id.logout)
         {
-            FirebaseAuth.getInstance().signOut();
-            profileHistoryMoudle.LogOut();
-            Intent intent1=new Intent(ProfileHistory.this, LogIn1.class);
-            intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent1);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Are you sure you want to log out ,it will clear your history");
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    FirebaseAuth.getInstance().signOut();
+                    profileHistoryMoudle.LogOut();
+                    Intent intent1 = new Intent(ProfileHistory.this, LogIn1.class);
+                    intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent1);
+                }
+            });
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss(); // Dismiss the dialog if canceled
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
             return true;
-        } else
-        {
+        } else {
             return super.onOptionsItemSelected(item);
         }
     }

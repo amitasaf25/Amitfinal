@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -55,6 +57,9 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
+        mAuth = FirebaseAuth.getInstance();
+        user=mAuth.getCurrentUser();
+
         // אתחול המשתנים
         homePagemodule = new HomePagemodule(this);
         image1 = findViewById(R.id.image1);
@@ -66,7 +71,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener
         tvdes = findViewById(R.id.tvdes);
         btncamera.setOnClickListener(this);
         btndes.setOnClickListener(this);
-        mAuth = FirebaseAuth.getInstance();
+        homePagemodule.start(user, mAuth, tvname, tvmoney);
     }
 
 
@@ -76,7 +81,8 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener
     protected void onStart()
     {
         super.onStart();
-        homePagemodule.start(user,mAuth,tvname,tvmoney);
+       // homePagemodule.start(user,mAuth,tvname,tvmoney);
+
     }
 
 
@@ -165,7 +171,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener
             }
             else
             {
-                Toast.makeText(this, "Error: user is null", Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomePage.this, "Error: user is null", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -180,41 +186,51 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener
 
     // ניהול בחירת פריט בתפריט
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item)
-    {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.home)
-        {
+        if (id == R.id.home) {
             Toast.makeText(this, "you already in home", Toast.LENGTH_SHORT).show();
             return true;
-        }
-        else if (id == R.id.profile2)
-        {
+        } else if (id == R.id.profile2) {
             Intent intent = new Intent(HomePage.this, EditProfile.class);
             startActivity(intent);
             return true;
-        }
-        else if (id == R.id.profile)
-        {
+        } else if (id == R.id.profile) {
             Intent intent = new Intent(HomePage.this, ProfileHistory.class);
             startActivity(intent);
             return true;
-        }
-        else if (id == R.id.logout)
+        } else if (id == R.id.logout)
         {
-            FirebaseAuth.getInstance().signOut();
-            homePagemodule.LogOut();
-            Intent intent1 = new Intent(HomePage.this, LogIn1.class);
-            intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent1);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Are you sure you want to log out ,it will clear your history");
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener()
+            {
+                @Override
+                public void onClick(DialogInterface dialog, int which)
+                {
+                    FirebaseAuth.getInstance().signOut();
+                    homePagemodule.LogOut();
+                    Intent intent1 = new Intent(HomePage.this, LogIn1.class);
+                    intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent1);
+                }
+            });
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss(); // Dismiss the dialog if canceled
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
             return true;
-        }
-        else
+        } else
         {
             return super.onOptionsItemSelected(item);
         }
     }
+
 
 
 
@@ -230,6 +246,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener
                     {
                         image1.setVisibility(View.VISIBLE);
                         photo = (Bitmap) result.getData().getExtras().get("data");
+                     photo = cropToSquare(photo);
                         image1.setImageBitmap(photo);
                         tvdes.setText("Describe what you recycle");
                         tvdes.setVisibility(View.VISIBLE);
@@ -240,6 +257,15 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener
                 }
             });
 
+    public Bitmap cropToSquare(Bitmap bitmap)
+    {
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+        int newWidth = (width > height) ? height : width;
+        int newHeight = (width > height) ? height : width;
+        int cropW = (width - newWidth) / 2;
+        int cropH = (height - newHeight) / 2;
 
-
+        return Bitmap.createBitmap(bitmap, cropW, cropH, newWidth, newHeight);
+    }
 }

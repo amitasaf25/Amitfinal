@@ -52,7 +52,7 @@
                 android:id="@+id/inputPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Password"
+                android:hint="Password (must 6 digits)"
                 android:inputType="textPassword"
                 android:layout_marginBottom="16dp" />
 
@@ -65,6 +65,7 @@
                 android:id="@+id/bt_register"
                 android:textColor="@color/green"
                 android:textStyle="bold"
+                android:textSize="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/roundbackround"
@@ -74,6 +75,7 @@
                 android:layout_width="match_parent"
                 android:textColor="@color/green"
                 android:textStyle="bold"
+                android:textSize="15dp"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
                 android:text="Have an account? Sign in"

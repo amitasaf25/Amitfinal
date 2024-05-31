@@ -167,7 +167,8 @@ public interface Completed2
                     public void onComplete(@NonNull Task<Void> task)
                     {
 
-                        if (task.isSuccessful()) {
+                        if (task.isSuccessful())
+                        {
 
                             callback.onComplete(true);
                         }

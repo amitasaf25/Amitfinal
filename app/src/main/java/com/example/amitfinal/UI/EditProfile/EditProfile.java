@@ -3,6 +3,8 @@ package com.example.amitfinal.UI.EditProfile;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,6 +18,7 @@ import com.example.amitfinal.DB.FirebaseHelper;
 import com.example.amitfinal.R;
 import com.example.amitfinal.Repository.Repository;
 import com.example.amitfinal.UI.HomePage.HomePage;
+import com.example.amitfinal.UI.HomePage.HomePagemodule;
 import com.example.amitfinal.UI.LogIn1.LogIn1;
 import com.example.amitfinal.UI.MainActivity.MainActivity;
 import com.example.amitfinal.UI.ProfileHistory.ProfileHistory;
@@ -25,6 +28,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class EditProfile extends AppCompatActivity implements View.OnClickListener
 {
    private EditText password;
+
     private FirebaseAuth mAuth;
     private FirebaseUser user;
   private   Button reset;
@@ -40,6 +44,9 @@ private EditProfileMoudle editProfileMoudle;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
+        mAuth = FirebaseAuth.getInstance();
+        user=mAuth.getCurrentUser();
+        editProfileMoudle = new EditProfileMoudle(this);
         password=findViewById(R.id.password);
         reset=findViewById(R.id.reset);
         delete=findViewById(R.id.delete);
@@ -49,12 +56,12 @@ private EditProfileMoudle editProfileMoudle;
 
     }
 
-    @Override
-    protected void onStart()
-    {
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        super.onStart();
-    }
+//    @Override
+//    protected void onStart()
+//    {
+//        user = FirebaseAuth.getInstance().getCurrentUser();
+//        super.onStart();
+//    }
 
     @Override
     public void onClick(View view)
@@ -75,14 +82,14 @@ private EditProfileMoudle editProfileMoudle;
                   }
                   else
                   {
-                      Toast.makeText(EditProfile.this, "failed", Toast.LENGTH_SHORT).show();
+                      Toast.makeText(EditProfile.this, "failed1", Toast.LENGTH_SHORT).show();
                   }
                 }
             });
         }
         else
         {
-            Toast.makeText(EditProfile.this, "failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(EditProfile.this, "failed2", Toast.LENGTH_SHORT).show();
         }
 
       }
@@ -112,14 +119,14 @@ private EditProfileMoudle editProfileMoudle;
                              }
                              else
                              {
-                                 Toast.makeText(EditProfile.this, "failed", Toast.LENGTH_SHORT).show();
+                                 Toast.makeText(EditProfile.this, "failed1", Toast.LENGTH_SHORT).show();
                              }
                            }
                        });
                    }
                    else
                    {
-                       Toast.makeText(EditProfile.this, "failed", Toast.LENGTH_SHORT).show();
+                       Toast.makeText(EditProfile.this, "failed2", Toast.LENGTH_SHORT).show();
                    }
                   }
               });
@@ -168,14 +175,29 @@ private EditProfileMoudle editProfileMoudle;
             return true;
         } else if (id == R.id.logout)
         {
-            FirebaseAuth.getInstance().signOut();
-            editProfileMoudle.LogOut();
-            Intent intent1=new Intent(EditProfile.this, LogIn1.class);
-            intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent1);
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Are you sure you want to log out ,it will clear your history");
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    FirebaseAuth.getInstance().signOut();
+                    editProfileMoudle.LogOut();
+                    Intent intent1 = new Intent(EditProfile.this, LogIn1.class);
+                    intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent1);
+                }
+            });
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss(); // Dismiss the dialog if canceled
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
             return true;
-        } else
-        {
+        } else {
             return super.onOptionsItemSelected(item);
         }
     }

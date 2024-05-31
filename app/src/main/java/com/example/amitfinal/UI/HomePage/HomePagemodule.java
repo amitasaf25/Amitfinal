@@ -16,7 +16,8 @@ public class HomePagemodule
         repository = new Repository(context);
 
     }
-    public void start(FirebaseUser user, FirebaseAuth mAuth, TextView tvname, TextView tvmoney){
+    public void start(FirebaseUser user, FirebaseAuth mAuth, TextView tvname, TextView tvmoney)
+    {
         user = mAuth.getCurrentUser();
         if (user != null)
         {
