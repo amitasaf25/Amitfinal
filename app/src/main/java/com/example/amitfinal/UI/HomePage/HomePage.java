@@ -257,6 +257,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener
                 }
             });
 
+    //פעולה לחיתוך התמונה כדי להציג אותה בצורה עגולה
     public Bitmap cropToSquare(Bitmap bitmap)
     {
         int width = bitmap.getWidth();

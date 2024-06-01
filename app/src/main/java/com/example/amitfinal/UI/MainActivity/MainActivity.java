@@ -22,73 +22,92 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener
 {
+    // משתנים עבור Firebase
     private FirebaseAuth mAuth;
     private FirebaseHelper firebaseHelper;
-    private String email,password;
-    private EditText inputEmail,inputPassword,inputUsername;
-    private Button bt_register,btnlogin;
 
+    // משתנים עבור פרטי המשתמש
+    private String email, password;
+    private EditText inputEmail, inputPassword, inputUsername;
+    private Button bt_register, btnlogin;
 
-   private MainActivitymodule mainActivitymodule;
+    // מודול עבור MainActivity
+    private MainActivitymodule mainActivitymodule;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-         mainActivitymodule=new MainActivitymodule(this);
+
+        // אתחול המודול MainActivity
+        mainActivitymodule = new MainActivitymodule(this);
+
+        // קבלת התוכנית הנוכחית של Firebase
         mAuth = FirebaseAuth.getInstance();
-        inputUsername=findViewById(R.id.inputUsername);
+
+        // קבלת כתובות האימייל והסיסמה מה-EditText
+        inputUsername = findViewById(R.id.inputUsername);
         inputEmail = findViewById(R.id.inputEmail);
         inputPassword = findViewById(R.id.inputPassword);
+
+        // קבלת הכפתורים מה-XML
         bt_register = findViewById(R.id.bt_register);
-        btnlogin=findViewById(R.id.btnlogin);
+        btnlogin = findViewById(R.id.btnlogin);
+
+        // הוספת מאזין לאירועי לחיצה על הכפתורים
         bt_register.setOnClickListener(this);
         btnlogin.setOnClickListener(this);
     }
+
     @Override
     protected void onStart()
     {
         super.onStart();
+        // בדיקה אם המשתמש כבר מחובר, אם כן, הוא יועבר לדף הבית
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null)
         {
-           Intent intent=new Intent(MainActivity.this, HomePage.class);
-           intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-           startActivity(intent);
+            Intent intent = new Intent(MainActivity.this, HomePage.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
         }
     }
-
-
 
     @Override
     public void onClick(View v)
     {
-        if(bt_register == v)
+        if (bt_register == v)
         {
-            String input= String.valueOf(inputUsername.getText());
-            String input2= String.valueOf(inputEmail.getText());
-            String input3= String.valueOf(inputPassword.getText());
-            if(input.isEmpty()||input2.isEmpty()||input3.isEmpty())
+            // בדיקת תקינות קלטי המשתמש
+            String input = String.valueOf(inputUsername.getText());
+            String input2 = String.valueOf(inputEmail.getText());
+            String input3 = String.valueOf(inputPassword.getText());
+            if (input.isEmpty() || input2.isEmpty() || input3.isEmpty())
             {
-                Toast.makeText(this, "Username, email or password are empty", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Username, email, or password is empty", Toast.LENGTH_SHORT).show();
                 return;
             }
-            User user=new User(inputEmail.getText().toString().trim(),inputPassword.getText().toString().trim(),inputUsername.getText().toString());
+
+            // יצירת משתמש חדש
+            User user = new User(inputEmail.getText().toString().trim(), inputPassword.getText().toString().trim(), inputUsername.getText().toString());
+
+            // הרשמה לאפליקציה וקבלת המטבעות הראשוניים
             mainActivitymodule.signUp(user, new FirebaseHelper.Completed()
             {
                 @Override
                 public void onComplete(boolean flag)
                 {
-                    if(flag)
+                    if (flag)
                     {
+                        // בדיקה אם ההרשמה הצליחה, ואם כן, העברה לדף הבית
                         mainActivitymodule.getMoney(inputEmail.getText().toString(), 0, new FirebaseHelper.Completed() {
                             @Override
                             public void onComplete(boolean flag)
                             {
-                                if(flag)
+                                if (flag)
                                 {
-                                 success();
+                                    success();
                                 }
                                 else
                                 {
@@ -99,24 +118,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                     else
                     {
-                        Toast.makeText(MainActivity.this, "failed, email or password wrong", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Failed, email or password is wrong", Toast.LENGTH_SHORT).show();
                     }
                 }
 
             });
-
-
         }
-        if(btnlogin==v)
+        else if (btnlogin == v)
         {
-            Intent intent=new Intent(MainActivity.this, LogIn1.class);
+            // העברה לדף ההתחברות
+            Intent intent = new Intent(MainActivity.this, LogIn1.class);
             startActivity(intent);
-
         }
-
-
-
-
     }
 
     // פעולה להצגת הודעת הצלחה

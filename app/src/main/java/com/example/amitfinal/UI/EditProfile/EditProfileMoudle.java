@@ -8,35 +8,41 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class EditProfileMoudle
 {
-  private Repository repository;
- private  Context c;
+    // משתנה לאחסון אובייקט מסוג Repository
+    private Repository repository;
 
-    public EditProfileMoudle( Context c)
+    // משתנה לאחסון ההקשר (context)
+    private Context c;
+
+    // בנאי המאתחל את ההקשר ויוצר אובייקט Repository
+    public EditProfileMoudle(Context c)
     {
         this.c = c;
-        repository=new Repository(c);
-
+        repository = new Repository(c);
     }
 
-
+    // פונקציה לאיפוס סיסמה באמצעות הקריאה ל-repository
     public void reset(FirebaseUser user, String trim, FirebaseHelper.Completed completed)
     {
-        repository.reset(user,trim,completed);
+        repository.reset(user, trim, completed);
     }
 
+    // פונקציה למחיקת חשבון משתמש באמצעות הקריאה ל-repository
     public void deleteAccount(FirebaseUser user, FirebaseHelper.Completed completed)
     {
-        repository.deleteAccount(user,completed);
+        repository.deleteAccount(user, completed);
     }
 
+    // פונקציה למחיקת מסמך המשתמש במסד הנתונים באמצעות הקריאה ל-repository
     public void deleteUserDocument(String email, FirebaseHelper.Completed completed)
     {
-        repository.deleteUserDocument(email,completed);
-
+        repository.deleteUserDocument(email, completed);
     }
 
+    // פונקציה לניתוק המשתמש מהמערכת באמצעות הקריאה ל-repository
     public void LogOut()
     {
         repository.LogOut();
     }
 }
+

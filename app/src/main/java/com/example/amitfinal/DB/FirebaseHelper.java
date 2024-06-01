@@ -158,6 +158,7 @@ public interface Completed2
                    }
                });
    }
+   //פעולה למחיקת חשבון מfireebase
     public void deleteAccount(FirebaseUser user, Completed callback)
     {
         user.delete()
@@ -179,6 +180,7 @@ public interface Completed2
                     }
                 });
     }
+    //פונקציה לאיפוס סיסמה
     public  void reset(FirebaseUser user,String password,Completed callback)
     {
 
@@ -199,6 +201,7 @@ public interface Completed2
                     }
                 });
     }
+    //פונקציה למחיקת מסמכי החשבון מfirestore
     public void deleteUserDocument(String email,Completed callback)
     {
         db.collection(email).document("money")
@@ -217,8 +220,6 @@ public interface Completed2
                     }
                 });
     }
-
-
 
 }
 

@@ -8,19 +8,26 @@ import com.example.amitfinal.DB.FirebaseHelper;
 import com.example.amitfinal.Repository.Moudle.User;
 import com.example.amitfinal.Repository.Repository;
 
-public class LogIn1module {
-
+public class LogIn1module
+{
+    // משתנה לאחסון ההקשר
     private Context context;
+
+    // משתנה לאחסון המחסן (repository)
     Repository repository;
+
+    // בנאי שמקבל הקשר ומאתחל את המחסן
     public LogIn1module(Context c)
     {
         this.context = c;
-        repository=new Repository(c);
+        repository = new Repository(c);
     }
 
-
+    // פונקציה להתחברות של משתמש
     public void signIn(User user, FirebaseHelper.Completed failed)
     {
-        repository.signIn(user,failed);
+        // קריאה לפונקציית ההתחברות במחסן
+        repository.signIn(user, failed);
     }
 }
+
