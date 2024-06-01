@@ -40,7 +40,8 @@ public class Adapter extends  RecyclerView.Adapter<Adapter.ViewHolder>
         return infoList.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder
+    {
         public TextView nameTextView;
         public TextView timeTextView;
 

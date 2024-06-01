@@ -56,12 +56,7 @@ private EditProfileMoudle editProfileMoudle;
 
     }
 
-//    @Override
-//    protected void onStart()
-//    {
-//        user = FirebaseAuth.getInstance().getCurrentUser();
-//        super.onStart();
-//    }
+
 
     @Override
     public void onClick(View view)

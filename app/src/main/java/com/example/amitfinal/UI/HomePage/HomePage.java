@@ -246,7 +246,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener
                     {
                         image1.setVisibility(View.VISIBLE);
                         photo = (Bitmap) result.getData().getExtras().get("data");
-                     photo = cropToSquare(photo);
+                        photo = cropToSquare(photo);
                         image1.setImageBitmap(photo);
                         tvdes.setText("Describe what you recycle");
                         tvdes.setVisibility(View.VISIBLE);

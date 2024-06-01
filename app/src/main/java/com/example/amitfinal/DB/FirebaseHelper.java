@@ -67,7 +67,8 @@ public interface Completed2
     }
 
     //פעולה להתחברות משתמש קיים
-    public void signIn(String email, String password,Completed callback){
+    public void signIn(String email, String password,Completed callback)
+    {
         mAuth.signInWithEmailAndPassword(email,password)
                 .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
                     @Override
@@ -90,8 +91,6 @@ public interface Completed2
     // פעולה ליצירת משתמש חדש
     public void signUp(String email, String password,String username, Completed callback)
     {
-
-
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener( new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -113,7 +112,8 @@ public interface Completed2
    }
     // פעולה לעדכון סכום הכסף במסד הנתונים
 
-    public void UpdateMoney(String email,Completed callback){
+    public void UpdateMoney(String email,Completed callback)
+    {
        showMoney(email, new Completed2() {
            @Override
            public void onComplete(String money) {

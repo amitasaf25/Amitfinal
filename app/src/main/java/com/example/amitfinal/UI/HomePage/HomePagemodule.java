@@ -12,7 +12,10 @@ public class HomePagemodule
 
 {
     Repository repository;
-    public HomePagemodule(Context context){
+    private Context context;
+    public HomePagemodule(Context context)
+    {
+        this.context=context;
         repository = new Repository(context);
 
     }

@@ -123,7 +123,7 @@ public class Repository
 
     public void LogOut()
     {
-        sharedPreferences = context.getSharedPreferences("sharedpre", MODE_APPEND);
+        sharedPreferences = context.getSharedPreferences("sharedpre", MODE_PRIVATE);
         SharedPreferences.Editor editor=sharedPreferences.edit();
         editor.clear();
         editor.apply();
