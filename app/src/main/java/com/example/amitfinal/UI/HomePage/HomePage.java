@@ -17,6 +17,7 @@ import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -144,6 +145,9 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener
                                 btndes.setVisibility(View.INVISIBLE);
                                 etdes.setVisibility(View.INVISIBLE);
                                 image1.setVisibility(View.INVISIBLE);
+                                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                                inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
 
                                 Toast.makeText(HomePage.this, "You got 5 coins", Toast.LENGTH_SHORT).show();
 
