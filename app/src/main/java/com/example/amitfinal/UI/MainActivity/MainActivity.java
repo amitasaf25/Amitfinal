@@ -24,10 +24,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 {
     // משתנים עבור Firebase
     private FirebaseAuth mAuth;
-    private FirebaseHelper firebaseHelper;
-
-    // משתנים עבור פרטי המשתמש
-    private String email, password;
     private EditText inputEmail, inputPassword, inputUsername;
     private Button bt_register, btnlogin;
 
@@ -101,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if (flag)
                     {
                         // בדיקה אם ההרשמה הצליחה, ואם כן, העברה לדף הבית
-                        mainActivitymodule.getMoney(inputEmail.getText().toString(), 0, new FirebaseHelper.Completed() {
+                        mainActivitymodule.getMoney(inputEmail.getText().toString() , 0, new FirebaseHelper.Completed() {
                             @Override
                             public void onComplete(boolean flag)
                             {

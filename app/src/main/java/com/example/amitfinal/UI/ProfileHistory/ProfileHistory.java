@@ -27,6 +27,7 @@ public class ProfileHistory extends AppCompatActivity {
     private ProfileHistoryMoudle profileHistoryMoudle;
     private com.example.amitfinal.UI.ProfileHistory.Adapter Adapter;
 
+
     // Method invoked when the screen is created
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,14 +47,16 @@ public class ProfileHistory extends AppCompatActivity {
 
     // Method to create options menu
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
 
     // Method to handle menu item selection
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item)
+    {
         int id = item.getItemId();
 
         // Handle menu item clicks
@@ -71,7 +74,9 @@ public class ProfileHistory extends AppCompatActivity {
             // Display a toast indicating the user is already in profile history
             Toast.makeText(this, "You are already in profile history", Toast.LENGTH_SHORT).show();
             return true;
-        } else if (id == R.id.logout) {
+        }
+        else if (id == R.id.logout)
+        {
             // Confirm logout and clear history
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("Are you sure you want to log out? This will clear your history.");
@@ -95,7 +100,9 @@ public class ProfileHistory extends AppCompatActivity {
             AlertDialog dialog = builder.create();
             dialog.show();
             return true;
-        } else {
+        }
+        else
+        {
             return super.onOptionsItemSelected(item);
         }
     }

@@ -111,7 +111,7 @@ public class Repository
     public List<LogShredPre> getShredpre()
     {
         List<LogShredPre> list = new ArrayList<>();
-        sharedPreferences = context.getSharedPreferences("sharedpre", MODE_APPEND);
+        sharedPreferences = context.getSharedPreferences("sharedpre", MODE_PRIVATE);
         Map<String, ?> allEntries = sharedPreferences.getAll();
         for (Map.Entry<String, ?> entry : allEntries.entrySet())
         {

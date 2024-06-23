@@ -199,7 +199,8 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
             });
             builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                 @Override
-                public void onClick(DialogInterface dialog, int which) {
+                public void onClick(DialogInterface dialog, int which)
+                {
                     dialog.dismiss(); // סגירת הדיאלוג במקרה של ביטול
                 }
             });

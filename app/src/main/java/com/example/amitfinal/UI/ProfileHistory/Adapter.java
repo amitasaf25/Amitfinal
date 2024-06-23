@@ -12,11 +12,13 @@ import com.example.amitfinal.R;
 
 import java.util.List;
 
-public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
+public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>
+{
     private List<LogShredPre> infoList;
 
     // Constructor to receive the list of items
-    public Adapter(List<LogShredPre> infoList) {
+    public Adapter(List<LogShredPre> infoList)
+    {
         this.infoList = infoList;
     }
 
@@ -30,7 +32,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     // Binds data to the views in each item of the RecyclerView
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, int position)
+    {
         LogShredPre logShredPre = infoList.get(position);
         holder.nameTextView.setText(logShredPre.getDescrip());
         holder.timeTextView.setText(logShredPre.getDate());
@@ -43,12 +46,14 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     }
 
     // ViewHolder class to hold references to the views in each item
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder
+    {
         public TextView nameTextView;
         public TextView timeTextView;
 
         // Constructor to initialize views
-        public ViewHolder(View itemView) {
+        public ViewHolder(View itemView)
+        {
             super(itemView);
             nameTextView = itemView.findViewById(R.id.nameTextView);
             timeTextView = itemView.findViewById(R.id.timeTextView);

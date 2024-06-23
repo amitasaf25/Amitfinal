@@ -145,13 +145,15 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener
                                 btndes.setVisibility(View.INVISIBLE);
                                 etdes.setVisibility(View.INVISIBLE);
                                 image1.setVisibility(View.INVISIBLE);
+                                //סגירת מקלדת
                                 InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
                                 inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
 
                                 Toast.makeText(HomePage.this, "You got 5 coins", Toast.LENGTH_SHORT).show();
 
-                                homePagemodule.showMoney(user.getEmail(), new FirebaseHelper.Completed2() {
+                                homePagemodule.showMoney(user.getEmail(), new FirebaseHelper.Completed2()
+                                {
                                     @Override
                                     public void onComplete(String money)
                                     {

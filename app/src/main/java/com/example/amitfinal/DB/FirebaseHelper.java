@@ -43,10 +43,10 @@ public class FirebaseHelper
     {
         void onComplete(boolean flag);
     }
-public interface Completed2
-{
+    public interface Completed2
+    {
         void onComplete(String money);
-}
+    }
 
     // פעולה לקבלת כסף מה- Firestore ועדכון סכום הכסף במסד הנתונים
     public void GetMoney(String email,double money,Completed callback)
@@ -116,7 +116,8 @@ public interface Completed2
     {
        showMoney(email, new Completed2() {
            @Override
-           public void onComplete(String money) {
+           public void onComplete(String money)
+           {
                double money2= Double.parseDouble(money);
                DocumentReference washingtonRef = db.collection(email).document("money");
                washingtonRef
@@ -149,7 +150,8 @@ public interface Completed2
                    @Override
                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
                        if (task.isSuccessful()) {
-                           for (QueryDocumentSnapshot document : task.getResult()) {
+                           for (QueryDocumentSnapshot document : task.getResult())
+                           {
                                callback.onComplete(document.getData().get("money").toString().trim());
                            }
                        } else {

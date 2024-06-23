@@ -24,7 +24,7 @@ public class LogIn1 extends AppCompatActivity implements View.OnClickListener
 {
     // משתנה לאחסון FirebaseAuth
     private FirebaseAuth mAuth;
-    private FirebaseHelper firebaseHelper;
+
 
     // משתנים לאחסון אימייל וסיסמה
     private String email, password;
@@ -40,7 +40,8 @@ public class LogIn1 extends AppCompatActivity implements View.OnClickListener
     private LogIn1module logIn1module;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
 
         // הגדרת תצוגת הפעילות
